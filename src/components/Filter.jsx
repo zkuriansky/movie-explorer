@@ -1,0 +1,30 @@
+import React, { useContext } from "react";
+import { MoviesContext } from "../context/MoviesContext";
+
+const Filter = () => {
+  const { handleFilterMovies, handleResetFilter } = useContext(MoviesContext);
+  const filterParams = [5, 7, 9];
+  return (
+    <div className="filter__container">
+      <h2>Options for filter</h2>
+      <div className="button__filter-group">
+        {filterParams.map((param) => {
+          return (
+            <button
+              key={param}
+              type="button"
+              onClick={() => handleFilterMovies(param)}
+            >
+              Show movies with a rating higher than {param}
+            </button>
+          );
+        })}
+        <button type="button" onClick={handleResetFilter}>
+          Reset filter
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Filter;
