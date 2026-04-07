@@ -24,10 +24,11 @@ export const MoviesProvider = ({ children }) => {
     setCurrentPage(1);
   };
 
-  const { handleFilterMovies, handleResetFilter } = useFilter({
+  const { handleFilterMovies, handleResetFilter, isFilterActive } = useFilter({
     data,
     setMovies,
     setCurrentPage,
+    movies,
   });
 
   const handlePageChange = (pageIndex) => {
@@ -47,6 +48,7 @@ export const MoviesProvider = ({ children }) => {
         handleFilterMovies,
         handleResetFilter,
         handlePageChange,
+        isFilterActive,
       }}
     >
       {children}

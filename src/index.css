@@ -73,6 +73,14 @@ body {
   color: #555;
 }
 
+.search__error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}
+
 .main__app {
   display: flex;
   gap: 20px;
@@ -111,6 +119,12 @@ body {
 
 .button__filter-group button:hover {
   background-color: darkgray;
+}
+
+.button__filter-group button:disabled {
+  background-color: #222;
+  color: white;
+  cursor: not-allowed;
 }
 
 .movies__container {

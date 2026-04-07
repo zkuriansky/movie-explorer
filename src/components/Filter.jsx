@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { MoviesContext } from "../context/MoviesContext";
 
 const Filter = () => {
-  const { handleFilterMovies, handleResetFilter } = useContext(MoviesContext);
+  const { handleFilterMovies, handleResetFilter, isFilterActive } =
+    useContext(MoviesContext);
   const filterParams = [5, 7, 9];
   return (
     <div className="filter__container">
@@ -19,7 +20,11 @@ const Filter = () => {
             </button>
           );
         })}
-        <button type="button" onClick={handleResetFilter}>
+        <button
+          type="button"
+          onClick={handleResetFilter}
+          disabled={!isFilterActive}
+        >
           Reset filter
         </button>
       </div>
