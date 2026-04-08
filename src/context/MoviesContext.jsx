@@ -1,15 +1,29 @@
-import { createContext, useState } from "react";
-import data from "../data/movies";
+import { createContext, useState, useEffect } from "react";
 import usePaginate from "../hooks/usePaginate";
 import useFilter from "../hooks/useFilter";
+import moviesAPI from "../api/movies.api";
 
 export const MoviesContext = createContext({});
 
 export const MoviesProvider = ({ children }) => {
   const { currentPage, setCurrentPage, paginate } = usePaginate();
-  const [movies, setMovies] = useState(data);
+  const [movies, setMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const moviesCount = 8;
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const data = await moviesAPI.getAll();
+        setMovies(data);
+        setAllMovies(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTasks();
+  }, []);
 
   const clearSearchQuery = searchQuery.trim().toLowerCase();
 
@@ -25,7 +39,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const { handleFilterMovies, handleResetFilter, isFilterActive } = useFilter({
-    data,
+    data: allMovies,
     setMovies,
     setCurrentPage,
     movies,

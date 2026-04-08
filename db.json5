@@ -1,4 +1,5 @@
-const movies = [
+{
+    movies: [
   {
     id: 1,
     title: "Inception",
@@ -262,6 +263,5 @@ const movies = [
     genre: "Drama",
     isFavorite: false,
   },
-];
-
-export default movies;
+]
+}
