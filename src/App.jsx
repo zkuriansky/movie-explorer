@@ -1,10 +1,10 @@
-import Explorer from "./components/Explorer";
 import { MoviesProvider } from "./context/MoviesContext";
+import AppRoutes from "./routes/routes";
 
 const App = () => {
   return (
     <MoviesProvider>
-      <Explorer />
+      <AppRoutes />
     </MoviesProvider>
   );
 };
