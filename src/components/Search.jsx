@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { MoviesContext } from "../context/MoviesContext";
+import Input from "./Input";
 
 const Search = () => {
   const { searchQuery, setSearchQuery } = useContext(MoviesContext);
@@ -13,14 +14,9 @@ const Search = () => {
   };
   return (
     <div className="header__form">
-      <input
-        type="text"
-        id="headerInput"
-        placeholder=""
-        value={searchQuery}
-        onChange={onInput}
-      />
-      <label htmlFor="headerInput">Search film</label>
+      <Input id="headerInput" value={searchQuery} onChange={onInput}>
+        Search film
+      </Input>
       {error && <span className="search__error">{error}</span>}
     </div>
   );

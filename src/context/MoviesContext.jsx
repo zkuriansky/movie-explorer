@@ -9,6 +9,10 @@ export const MoviesProvider = ({ children }) => {
   const { currentPage, setCurrentPage, paginate } = usePaginate();
   const [movies, setMovies] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
+  const [movieTitle, setMovieTitle] = useState("");
+  const [movieYear, setMovieYear] = useState();
+  const [movieRating, setMovieRating] = useState();
+  const [movieGenre, setMovieGenre] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const moviesCount = 8;
 
@@ -24,6 +28,25 @@ export const MoviesProvider = ({ children }) => {
     };
     fetchTasks();
   }, []);
+
+  const addMovie = async (title, year, rating, genre) => {
+    try {
+      const newMovie = {
+        title: title.trim(),
+        year: year.trim(),
+        rating: rating.trim(),
+        genre: genre.trim(),
+      };
+      const addedMovie = await moviesAPI.add(newMovie);
+      setMovies((prevState) => [...prevState, addedMovie]);
+      setMovieTitle("");
+      setMovieYear("");
+      setMovieRating("");
+      setMovieGenre("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const clearSearchQuery = searchQuery.trim().toLowerCase();
 
@@ -63,6 +86,15 @@ export const MoviesProvider = ({ children }) => {
         handleResetFilter,
         handlePageChange,
         isFilterActive,
+        movieTitle,
+        setMovieTitle,
+        movieYear,
+        setMovieYear,
+        movieRating,
+        setMovieRating,
+        movieGenre,
+        setMovieGenre,
+        addMovie,
       }}
     >
       {children}
