@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { useContext } from "react";
-import { MoviesContext } from "../context/MoviesContext";
+import { MoviesContext } from "@/entities/movie";
 
 const Pagination = () => {
   const { movies, moviesCount, handlePageChange, currentPage } =

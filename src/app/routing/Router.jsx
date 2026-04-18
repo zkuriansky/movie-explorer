@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
-import MoviePage from "../pages/MoviePage";
-import MoviesPage from "../pages/MoviesPage";
-import ErrorPage from "../pages/ErrorPage";
-import FormAddPage from "../pages/FormAddPage";
+import MoviePage from "@/pages/MoviePage/MoviePage";
+import MoviesPage from "@/pages/MainPage";
+import ErrorPage from "@/pages/ErrorPage/ErrorPage";
+import FormAddPage from "@/pages/FormAddPage";
 
 const AppRoutes = () => {
   const navigationRoutes = [

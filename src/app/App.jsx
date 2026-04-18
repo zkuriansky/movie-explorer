@@ -1,5 +1,5 @@
-import { MoviesProvider } from "./context/MoviesContext";
-import AppRoutes from "./routes/routes";
+import { MoviesProvider } from "@/entities/movie";
+import AppRoutes from "./routing/Router";
 
 const App = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MoviesContext } from "../context/MoviesContext";
+import { MoviesContext } from "@/entities/movie";
 
 const Filter = () => {
   const { handleFilterMovies, handleResetFilter, isFilterActive } =

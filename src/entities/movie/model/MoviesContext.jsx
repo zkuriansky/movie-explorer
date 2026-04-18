@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import usePaginate from "../hooks/usePaginate";
-import useFilter from "../hooks/useFilter";
-import moviesAPI from "../api/movies.api";
+import usePaginate from "@/features/paginate-movie";
+import useFilter from "@/features/filter-movie";
+import moviesAPI from "@/shared/api/movie";
 
 export const MoviesContext = createContext({});
 

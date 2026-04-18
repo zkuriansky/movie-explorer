@@ -1,7 +1,7 @@
-import Input from "../components/Input";
 import { useContext } from "react";
-import { MoviesContext } from "../context/MoviesContext";
 import { Link } from "react-router";
+import { MoviesContext } from "@/entities/movie";
+import Input from "@/shared/ui/Input";
 
 const FormAddPage = () => {
   const {

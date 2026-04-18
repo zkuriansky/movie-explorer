@@ -1,7 +1,6 @@
-import MovieItem from "./MovieItem";
 import React, { useContext } from "react";
-import { MoviesContext } from "../context/MoviesContext";
-import MoviePage from "../pages/MoviePage";
+import { MoviesContext } from "@/entities/movie";
+import MovieItem from "../MovieItem";
 
 const MovieList = () => {
   const { moviesCrop, movies } = useContext(MoviesContext);

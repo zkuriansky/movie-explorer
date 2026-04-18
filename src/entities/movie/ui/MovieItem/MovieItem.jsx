@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { MoviesContext } from "../context/MoviesContext";
 import { Link } from "react-router";
 
 const MovieItem = (props) => {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { MoviesContext } from "../context/MoviesContext";
-import Input from "./Input";
+import { MoviesContext } from "@/entities/movie";
+import Input from "@/shared/ui/Input";
 
 const Search = () => {
   const { searchQuery, setSearchQuery } = useContext(MoviesContext);
