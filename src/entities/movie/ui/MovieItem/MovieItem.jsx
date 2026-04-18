@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
+import "./movie-item.scss";
 
 const MovieItem = (props) => {
   const { title, year, rating, genre, id } = props;

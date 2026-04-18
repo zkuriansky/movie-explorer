@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "@/entities/movie";
 import MovieItem from "../MovieItem";
+import "./movie-list.scss";
 
 const MovieList = () => {
   const { moviesCrop, movies } = useContext(MoviesContext);

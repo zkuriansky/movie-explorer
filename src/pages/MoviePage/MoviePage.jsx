@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import moviesAPI from "@/shared/api/movie";
+import "./movie-page.scss";
 
 const MoviePage = () => {
   const [movie, setMovie] = useState();

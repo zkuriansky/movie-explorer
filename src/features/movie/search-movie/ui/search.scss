@@ -1,0 +1,39 @@
+.header__form {
+  position: relative;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.header__form input {
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.header__form label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #aaa;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.header__form input:focus + label,
+.header__form input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  background: #f0f0f0;
+  padding: 0 4px;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.search__error {
+  color: red;
+  font-size: 13px;
+}

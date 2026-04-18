@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import { MoviesContext } from "@/entities/movie";
 import Input from "@/shared/ui/Input";
+import "./form-add-page.scss";
 
 const FormAddPage = () => {
   const {

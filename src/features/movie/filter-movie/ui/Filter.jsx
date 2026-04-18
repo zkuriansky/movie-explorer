@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "@/entities/movie";
+import "./filter.scss";
 
 const Filter = () => {
   const { handleFilterMovies, handleResetFilter, isFilterActive } =

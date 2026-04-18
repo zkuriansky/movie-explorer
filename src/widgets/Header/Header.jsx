@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
-import Search from "@/features/search-movie";
+import Search from "@/features/movie/search-movie/ui";
 import { MoviesContext } from "@/entities/movie";
+import "./header.scss";
 
 const Header = () => {
   const { searchQuery, setSearchQuery } = useContext(MoviesContext);

@@ -1,6 +1,6 @@
-import Filter from "@/features/filter-movie";
+import Filter from "@/features/movie/filter-movie/ui";
 import Header from "@/widgets/Header";
-import { MovieList } from "../../entities/movie";
+import { MovieList } from "@/entities/movie";
 import Pagination from "@/widgets/Pagination";
 
 const MainPage = () => {
