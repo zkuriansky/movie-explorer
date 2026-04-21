@@ -1,4 +1,10 @@
-const Input = (props) => {
+import type { InputHTMLAttributes, ReactNode } from "react";
+
+type PropTypes = {
+  children?: ReactNode;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+const Input = (props: PropTypes) => {
   const { type = "text", id, value, onChange, children, ...rest } = props;
   return (
     <>
@@ -10,7 +16,7 @@ const Input = (props) => {
         onChange={onChange}
         {...rest}
       />
-      <label htmlFor="headerInput">{children}</label>
+      <label htmlFor={id}>{children}</label>
     </>
   );
 };

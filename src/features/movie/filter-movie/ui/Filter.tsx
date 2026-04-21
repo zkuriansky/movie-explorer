@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { MoviesContext } from "@/entities/movie";
 import "./filter.scss";
 
 const Filter = () => {
-  const { handleFilterMovies, handleResetFilter, isFilterActive } =
-    useContext(MoviesContext);
-  const filterParams = [5, 7, 9];
+  const context = useContext(MoviesContext);
+  if (!context) throw new Error("Error getting context in Filter");
+  const { handleFilterMovies, handleResetFilter, isFilterActive } = context;
+  const filterParams: number[] = [5, 7, 9];
   return (
     <div className="filter__container">
       <h2>Options for filter</h2>

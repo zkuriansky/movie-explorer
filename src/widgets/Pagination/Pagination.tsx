@@ -1,11 +1,12 @@
-import _ from "lodash";
 import { useContext } from "react";
+import _ from "lodash";
 import { MoviesContext } from "@/entities/movie";
 import "./pagination.scss";
 
 const Pagination = () => {
-  const { movies, moviesCount, handlePageChange, currentPage } =
-    useContext(MoviesContext);
+  const context = useContext(MoviesContext);
+  if (!context) throw new Error("Error getting context in Pagination");
+  const { movies, moviesCount, handlePageChange, currentPage } = context;
   const length = movies.length;
 
   const pageCount = Math.ceil(length / moviesCount);
@@ -15,7 +16,7 @@ const Pagination = () => {
   return (
     <div className="pagination__list">
       <ul className="pagination">
-        {pages.map((page) => {
+        {pages.map((page: number) => {
           return (
             <li key={page}>
               <a

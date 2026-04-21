@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, type ChangeEvent } from "react";
 import { Link } from "react-router";
 import { MoviesContext } from "@/entities/movie";
 import Input from "@/shared/ui/Input";
 import "./form-add-page.scss";
 
 const FormAddPage = () => {
+  const context = useContext(MoviesContext);
+  if (!context) {
+    throw new Error("Error getting context in FormAdd");
+  }
   const {
     movieTitle,
     setMovieTitle,
@@ -15,25 +19,26 @@ const FormAddPage = () => {
     movieGenre,
     setMovieGenre,
     addMovie,
-  } = useContext(MoviesContext);
-  const onInputTitle = (event) => {
+  } = context;
+  const onInputTitle = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setMovieTitle(value);
   };
-  const onInputYear = (event) => {
+  const onInputYear = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setMovieYear(value);
+    setMovieYear(value ? Number(value) : null);
   };
-  const onInputRating = (event) => {
+  const onInputRating = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setMovieRating(value);
+    setMovieRating(value ? Number(value) : null);
   };
-  const onInputGenre = (event) => {
+  const onInputGenre = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setMovieGenre(value);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (movieYear === null || movieRating === null) return;
     addMovie(movieTitle, movieYear, movieRating, movieGenre);
   };
   return (
@@ -52,7 +57,7 @@ const FormAddPage = () => {
             <Input
               id="movieYear"
               type="number"
-              value={movieYear}
+              value={movieYear ?? ""}
               onChange={onInputYear}
             >
               Movie year:
@@ -65,7 +70,7 @@ const FormAddPage = () => {
               min="1"
               max="10"
               step="0.1"
-              value={movieRating}
+              value={movieRating ?? ""}
               onChange={onInputRating}
             ></Input>
           </div>

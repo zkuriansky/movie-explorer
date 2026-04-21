@@ -1,8 +1,15 @@
-import React, { useContext } from "react";
 import { Link } from "react-router";
 import "./movie-item.scss";
 
-const MovieItem = (props) => {
+type PropTypes = {
+  title: string;
+  year: number;
+  rating: number;
+  genre: string;
+  id: string;
+};
+
+const MovieItem = (props: PropTypes) => {
   const { title, year, rating, genre, id } = props;
   return (
     <div className="movie__item">

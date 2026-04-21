@@ -1,12 +1,16 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, type ChangeEvent } from "react";
 import { MoviesContext } from "@/entities/movie";
 import Input from "@/shared/ui/Input";
 import "./search.scss";
 
 const Search = () => {
-  const { searchQuery, setSearchQuery } = useContext(MoviesContext);
+  const context = useContext(MoviesContext);
+  if (!context) {
+    throw new Error("Error getting context in Search");
+  }
+  const { searchQuery, setSearchQuery } = context;
   const [error, setError] = useState("");
-  const onInput = (event) => {
+  const onInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     const clearValue = value.trim();
     const hasOnlySpaces = value.length > 0 && clearValue.length === 0;

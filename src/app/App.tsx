@@ -1,5 +1,5 @@
 import { MoviesProvider } from "@/entities/movie";
-import AppRoutes from "./routing/Router";
+import AppRoutes from "./routing";
 
 const App = () => {
   return (

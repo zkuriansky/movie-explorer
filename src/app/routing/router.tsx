@@ -1,14 +1,20 @@
+import type { ReactNode } from "react";
 import { Route, Routes } from "react-router";
-import MoviePage from "@/pages/MoviePage/MoviePage";
-import MoviesPage from "@/pages/MainPage";
-import ErrorPage from "@/pages/ErrorPage/ErrorPage";
+import MoviePage from "@/pages/MoviePage";
+import MainPage from "@/pages/MainPage";
+import ErrorPage from "@/pages/ErrorPage";
 import FormAddPage from "@/pages/FormAddPage";
 
+type RoutesType = {
+  path: string;
+  element: ReactNode;
+};
+
 const AppRoutes = () => {
-  const navigationRoutes = [
+  const navigationRoutes: RoutesType[] = [
     {
       path: "/",
-      element: <MoviesPage />,
+      element: <MainPage />,
     },
     {
       path: "/movies/:movieId",
@@ -22,13 +28,13 @@ const AppRoutes = () => {
       path: "*",
       element: <ErrorPage />,
     },
-  ]; //массив с путями навигации
+  ]; //route array
   return (
     <Routes>
       {navigationRoutes.map(({ path, element }) => (
         <Route key={path} path={path} element={element} />
       ))}
-    </Routes> //создание путей навигации
+    </Routes> //create route path
   );
 };
 

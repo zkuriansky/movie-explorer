@@ -1,4 +1,4 @@
-import { method } from "lodash";
+import type { CreateDataTypes } from "@/entities/movie/types/create-types";
 
 const URL = "http://localhost:3001/movies";
 const headers = {
@@ -13,14 +13,14 @@ const moviesAPI = {
     }
     return await response.json();
   },
-  getById: async (id) => {
+  getById: async (id: string) => {
     const response = await fetch(`${URL}/${id}`);
     if (!response.ok) {
       throw new Error("Error getting movie info");
     }
     return await response.json();
   },
-  add: async (newMovie) => {
+  add: async (newMovie: CreateDataTypes) => {
     const response = await fetch(URL, {
       method: "POST",
       headers: headers,
