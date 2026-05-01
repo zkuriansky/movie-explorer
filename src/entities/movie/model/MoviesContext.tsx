@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, type ReactNode } from "react";
-import type { DataTypes } from "@/entities/movie/types/data-types";
+import type { DataTypes } from "../types/data-types";
 import usePaginate from "@/features/movie/paginate-movie";
 import useFilter from "@/features/movie/filter-movie/model";
 import moviesAPI from "@/shared/api/movie";
@@ -22,14 +22,6 @@ type MoviesContextType = {
   handleResetFilter: () => void;
   handlePageChange: (pageIndex: number) => void;
   isFilterActive: boolean;
-  movieTitle: string;
-  setMovieTitle: (value: string) => void;
-  movieYear: number | null;
-  setMovieYear: (value: number | null) => void;
-  movieRating: number | null;
-  setMovieRating: (value: number | null) => void;
-  movieGenre: string;
-  setMovieGenre: (value: string) => void;
   addMovie: (
     title: string,
     year: number,
@@ -42,10 +34,6 @@ export const MoviesProvider = ({ children }: PropsType) => {
   const { currentPage, setCurrentPage, paginate } = usePaginate();
   const [movies, setMovies] = useState<DataTypes[]>([]);
   const [allMovies, setAllMovies] = useState<DataTypes[]>([]);
-  const [movieTitle, setMovieTitle] = useState<string>("");
-  const [movieYear, setMovieYear] = useState<number | null>(null);
-  const [movieRating, setMovieRating] = useState<number | null>(null);
-  const [movieGenre, setMovieGenre] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const moviesCount: number = 8;
 
@@ -77,10 +65,6 @@ export const MoviesProvider = ({ children }: PropsType) => {
       };
       const addedMovie = await moviesAPI.add(newMovie);
       setMovies((prevState) => [...prevState, addedMovie]);
-      setMovieTitle("");
-      setMovieYear(null);
-      setMovieRating(null);
-      setMovieGenre("");
     } catch (error) {
       console.log(error);
     }
@@ -128,14 +112,6 @@ export const MoviesProvider = ({ children }: PropsType) => {
         handleResetFilter,
         handlePageChange,
         isFilterActive,
-        movieTitle,
-        setMovieTitle,
-        movieYear,
-        setMovieYear,
-        movieRating,
-        setMovieRating,
-        movieGenre,
-        setMovieGenre,
         addMovie,
       }}
     >

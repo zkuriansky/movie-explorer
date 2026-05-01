@@ -1,7 +1,5 @@
-export type DataTypes = {
+import { type CreateDataTypes } from "./create-types";
+
+export type DataTypes = CreateDataTypes & {
   id: string;
-  title: string;
-  year: number;
-  rating: number;
-  genre: string;
 };

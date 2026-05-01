@@ -1,36 +1,19 @@
+import { api } from "./client";
 import type { CreateDataTypes } from "@/entities/movie/types/create-types";
-
-const URL = "http://localhost:3001/movies";
-const headers = {
-  "Content-Type": "application/json",
-};
+import type { DataTypes } from "@/entities/movie";
 
 const moviesAPI = {
-  getAll: async () => {
-    const response = await fetch(URL);
-    if (!response.ok) {
-      console.log("Error geting all films!");
-    }
-    return await response.json();
+  getAll: async (): Promise<DataTypes[]> => {
+    const { data } = await api.get<DataTypes[]>("/movies");
+    return data;
   },
-  getById: async (id: string) => {
-    const response = await fetch(`${URL}/${id}`);
-    if (!response.ok) {
-      throw new Error("Error getting movie info");
-    }
-    return await response.json();
+  getById: async (id: string): Promise<DataTypes> => {
+    const { data } = await api.get<DataTypes>("/movies/" + id);
+    return data;
   },
-  add: async (newMovie: CreateDataTypes) => {
-    const response = await fetch(URL, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(newMovie),
-    });
-    if (!response.ok) {
-      throw new Error("Error adding new task");
-    }
-    return await response.json();
+  add: async (newMovie: CreateDataTypes): Promise<DataTypes> => {
+    const { data } = await api.post<DataTypes>("/movies", newMovie);
+    return data;
   },
 };
-
 export default moviesAPI;

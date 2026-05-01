@@ -1,25 +1,19 @@
-import { useContext, type ChangeEvent } from "react";
+import { useContext, useState, type ChangeEvent } from "react";
 import { Link } from "react-router";
 import { MoviesContext } from "@/entities/movie";
 import Input from "@/shared/ui/Input";
 import "./form-add-page.scss";
 
 const FormAddPage = () => {
+  const [movieTitle, setMovieTitle] = useState<string>("");
+  const [movieYear, setMovieYear] = useState<number | null>(null);
+  const [movieRating, setMovieRating] = useState<number | null>(null);
+  const [movieGenre, setMovieGenre] = useState<string>("");
   const context = useContext(MoviesContext);
   if (!context) {
     throw new Error("Error getting context in FormAdd");
   }
-  const {
-    movieTitle,
-    setMovieTitle,
-    movieYear,
-    setMovieYear,
-    movieRating,
-    setMovieRating,
-    movieGenre,
-    setMovieGenre,
-    addMovie,
-  } = context;
+  const { addMovie } = context;
   const onInputTitle = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setMovieTitle(value);
@@ -40,6 +34,10 @@ const FormAddPage = () => {
     event.preventDefault();
     if (movieYear === null || movieRating === null) return;
     addMovie(movieTitle, movieYear, movieRating, movieGenre);
+    (setMovieGenre(""),
+      setMovieRating(null),
+      setMovieTitle(""),
+      setMovieYear(null));
   };
   return (
     <form className="form__page" onSubmit={handleSubmit}>
