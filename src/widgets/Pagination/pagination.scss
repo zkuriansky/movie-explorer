@@ -5,27 +5,31 @@
 
 .pagination {
   display: inline-flex;
-  list-style: none;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
 }
 
-.pagination li a {
-  display: block;
+.pagination__btn {
   padding: 8px 12px;
   border-radius: 6px;
   background-color: #ddd;
   color: #333;
-  text-decoration: none;
+  border: none;
   font-weight: bold;
   transition: background 0.2s;
 }
 
-.pagination li a:hover {
+.pagination__btn:hover:not(:disabled) {
   background-color: #bbb;
   cursor: pointer;
 }
 
-.pagination li a.active {
-  background-color: #999;
-  color: #fff;
+.pagination__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination__info {
+  font-weight: bold;
+  color: #333;
 }

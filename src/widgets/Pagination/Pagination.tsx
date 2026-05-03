@@ -1,34 +1,35 @@
-import { useContext } from "react";
-import _ from "lodash";
-import { MoviesContext } from "@/entities/movie";
 import "./pagination.scss";
+interface PagiProps {
+  page: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
 
-const Pagination = () => {
-  const context = useContext(MoviesContext);
-  if (!context) throw new Error("Error getting context in Pagination");
-  const { movies, moviesCount, handlePageChange, currentPage } = context;
-  const length = movies.length;
-
-  const pageCount = Math.ceil(length / moviesCount);
-  if (pageCount === 1) return null;
-  const pages = _.range(1, pageCount + 1);
-
+const Pagination = (props: PagiProps) => {
+  const { page, totalPages, onPageChange } = props;
   return (
     <div className="pagination__list">
-      <ul className="pagination">
-        {pages.map((page: number) => {
-          return (
-            <li key={page}>
-              <a
-                onClick={() => handlePageChange(page)}
-                className={`page-item ${page === currentPage ? "active" : ""}`}
-              >
-                {page}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="pagination">
+        <button
+          className="pagination__btn"
+          disabled={page <= 1}
+          onClick={() => onPageChange(page - 1)}
+        >
+          ← Back
+        </button>
+
+        <span className="pagination__info">
+          Page {page} from {totalPages || 1}
+        </span>
+
+        <button
+          className="pagination__btn"
+          disabled={page >= totalPages}
+          onClick={() => onPageChange(page + 1)}
+        >
+          Forward →
+        </button>
+      </div>
     </div>
   );
 };

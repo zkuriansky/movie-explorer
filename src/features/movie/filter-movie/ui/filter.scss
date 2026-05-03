@@ -29,6 +29,10 @@
   transition: background 0.2s;
 }
 
+.button__filter-group button .selected {
+  background-color: rgb(87, 87, 87);
+}
+
 .button__filter-group button:hover {
   background-color: darkgray;
 }

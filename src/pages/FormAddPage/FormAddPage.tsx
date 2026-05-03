@@ -1,25 +1,40 @@
-import { useContext, type ChangeEvent } from "react";
+import { type ChangeEvent, useState } from "react";
 import { Link } from "react-router";
-import { MoviesContext } from "@/entities/movie";
+import moviesAPI from "@/shared/api/movie";
 import Input from "@/shared/ui/Input";
 import "./form-add-page.scss";
+import { useAppDispatch } from "@/shared/store/hooks";
+import { addMovie } from "@/entities/movie/model/thunk";
 
 const FormAddPage = () => {
-  const context = useContext(MoviesContext);
-  if (!context) {
-    throw new Error("Error getting context in FormAdd");
-  }
-  const {
-    movieTitle,
-    setMovieTitle,
-    movieYear,
-    setMovieYear,
-    movieRating,
-    setMovieRating,
-    movieGenre,
-    setMovieGenre,
-    addMovie,
-  } = context;
+  const [movieTitle, setMovieTitle] = useState<string>("");
+  const [movieYear, setMovieYear] = useState<number | null>(null);
+  const [movieRating, setMovieRating] = useState<number | null>(null);
+  const [movieGenre, setMovieGenre] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const addNewMovie = async (
+    title: string,
+    year: number,
+    rating: number,
+    genre: string,
+  ) => {
+    try {
+      const newMovie = {
+        title: title.trim(),
+        year: year,
+        rating: rating,
+        genre: genre.trim(),
+      };
+      const addedMovie = await moviesAPI.add(newMovie);
+      dispatch(addMovie(addedMovie));
+      setMovieTitle("");
+      setMovieYear(null);
+      setMovieRating(null);
+      setMovieGenre("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const onInputTitle = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setMovieTitle(value);
@@ -39,7 +54,7 @@ const FormAddPage = () => {
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (movieYear === null || movieRating === null) return;
-    addMovie(movieTitle, movieYear, movieRating, movieGenre);
+    addNewMovie(movieTitle, movieYear, movieRating, movieGenre);
   };
   return (
     <form className="form__page" onSubmit={handleSubmit}>
