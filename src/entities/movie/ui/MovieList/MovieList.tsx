@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { MoviesContext } from "@/entities/movie";
+import { type DataTypes } from "@/entities/movie";
 import MovieItem from "../MovieItem";
 import "./movie-list.scss";
+interface ListProps {
+  movies: DataTypes[];
+}
 
-const MovieList = () => {
-  const context = useContext(MoviesContext);
-  if (!context) throw new Error("Error getting context in MovieList");
-  const { moviesCrop, movies } = context;
+const MovieList = (props: ListProps) => {
+  const { movies } = props;
 
   if (movies.length === 0) {
     return <div className="filter__err-message">There are no movies</div>;
@@ -14,7 +14,7 @@ const MovieList = () => {
 
   return (
     <div className="movies__container">
-      {moviesCrop.map((movie) => (
+      {movies.map((movie) => (
         <MovieItem key={movie.id} {...movie} />
       ))}
     </div>

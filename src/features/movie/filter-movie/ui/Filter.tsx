@@ -1,34 +1,34 @@
-import { useContext } from "react";
-import { MoviesContext } from "@/entities/movie";
 import "./filter.scss";
+interface FilTypes {
+  filter: number | null;
+  onFilterChange: (filter: number | null) => void;
+}
 
-const Filter = () => {
-  const context = useContext(MoviesContext);
-  if (!context) throw new Error("Error getting context in Filter");
-  const { handleFilterMovies, handleResetFilter, isFilterActive } = context;
-  const filterParams: number[] = [5, 7, 9];
+const Filter = (props: FilTypes) => {
+  const { filter, onFilterChange } = props;
   return (
     <div className="filter__container">
       <h2>Options for filter</h2>
       <div className="button__filter-group">
-        {filterParams.map((param) => {
-          return (
-            <button
-              key={param}
-              type="button"
-              onClick={() => handleFilterMovies(param)}
-            >
-              Show movies with a rating higher than {param}
-            </button>
-          );
-        })}
         <button
-          type="button"
-          onClick={handleResetFilter}
-          disabled={!isFilterActive}
+          className={filter === 5 ? "selected" : ""}
+          onClick={() => onFilterChange(5)}
         >
-          Reset filter
+          Show movies with a rating higher than 5
         </button>
+        <button
+          className={filter === 7 ? "selected" : ""}
+          onClick={() => onFilterChange(7)}
+        >
+          Show movies with a rating higher than 7
+        </button>
+        <button
+          className={filter === 9 ? "selected" : ""}
+          onClick={() => onFilterChange(9)}
+        >
+          Show movies with a rating higher than 9
+        </button>
+        <button onClick={() => onFilterChange(null)}>Reset filter</button>
       </div>
     </div>
   );
